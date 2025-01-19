@@ -1,0 +1,28 @@
+$schema: http://json-schema.org/draft-07/schema#
+type: object
+properties:
+  studentId:
+    type: string
+  firstName:
+    type: string
+  lastName:
+    type: string
+  grade:
+    type: integer
+    minimum: 9
+    maximum: 12
+  enrolledClasses:
+    type: array
+    items:
+      type: string
+  gpa:
+    type: number
+    minimum: 0.0
+    maximum: 4.0
+required:
+- studentId
+- firstName
+- lastName
+- grade
+- enrolledClasses
+- gpa

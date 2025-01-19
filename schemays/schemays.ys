@@ -1,0 +1,132 @@
+!yamlscript/v0
+
+ns: schemays
+
+defn deft-map+(spec name='list-map'):
+  fn(map):
+    when-not map?(map):
+      die: |
+        Failed type '$name' check - not a map:
+        $map
+    new =:
+      pairs =: spec:seq
+      loop [[key spec] *pair] pairs, new map:
+        new =:
+          key opt =:
+            re-opt =: /\ +\?$/
+            if key =~ re-opt:
+              -[key.replace(re-opt) true]
+               [key false]
+          val =: new.$key
+          type =:
+            if spec:string?:
+              deft-dsl: spec
+              else: spec
+          if val:nil?:
+            if-not opt:
+              die: |
+                Missing key '$key' in:
+                $map
+              else: new
+            else:
+              call type: val
+              dissoc new: key
+        if pair.?:
+          recur: pair new
+          else: new
+    if new.?:
+      die: |
+        Mapping has unknown keys:
+        $(yaml/dump(new:keys):chomp)
+      else: map
+
+defn deft-list+(type name='list-type'):
+  fn(vals):
+    if vals:sequential?:
+      each val vals:
+        type: val
+      else:
+        die: "Failed $name. Not a list: $val"
+
+#------------------------------------------------------------------------------
+defn deft-int():
+  fn(n):
+    when-not n:int?:
+      die: "$(pr-str n) is not an integer"
+    =>: n
+
+defn deft-rng(x y):
+  when-not x || y:
+    die: "Range must have start or end number"
+  x =: x && x:N
+  y =: y && y:N
+  when x && y && (x >= y):
+    die "$x is not less than $y"
+  fun =:
+    fn(f):
+      fn(n):
+        when-not f(n):
+          die: "$n is not in range $x..$y"
+        =>: n
+  cond:
+    not(x): fun(\(_ <= y))
+    not(y): fun(\(_ >= x))
+    else:   fun(\(x <= _ <= y))
+
+defn deft-rgx(rgx):
+  rs =: "^$rgx$"
+  r =: qr(rs)
+  fn(s):
+    string?(s) ||:
+      die: |
+        Not a string:
+        $s
+    s =~ r ||:
+      die: |
+        String: "$s"
+        Does not match: $rs
+    =>: s
+
+defn deft-dsl(s):
+  re-int-rng  =: /^(-?\d+)?\.\.(-?\d+)?$/
+  re-flt-rng  =: /^(-?\d+\.\d+)?\.\.(-?\d+\.\d+)?$/
+  re-regex    =: /^\/(.*)\/$/
+
+  condp \(%2 =~ %1) s:
+    re-int-rng:
+      m x y =: s =~ re-int-rng
+      comp:
+        deft-rng: x y
+        deft-int:
+    re-flt-rng:
+      m x y =: s =~ re-flt-rng
+      deft-rng: x y
+    re-regex:
+      m r =: s =~ re-regex
+      deft-rgx: r
+    else: die("Bad schemays type spec:\ '$s'")
+
+#------------------------------------------------------------------------------
+=>: !clj |
+  (defmacro deft-map
+   ([spec] `(deft-map+ ~spec))
+   ([name spec] `(intern *ns* '~name (deft-map+ ~spec (str '~name)))))
+
+  (defmacro deft-list
+   ([spec] `(deft-list+ ~spec))
+   ([name spec] `(intern *ns* '~name (deft-list+ ~spec (str '~name)))))
+
+# XXX Would like to DRY the above macros.
+
+# =>: !clj |
+#   (defmacro deft-call [dname]
+#     (let [fname (symbol (str dname "+"))
+#           ns *ns*]
+#       `(defn ~dname
+#         ([spec#] (~fname spec#))
+#         ([name# spec#]
+#          (intern ~ns 'name# (~fname spec# (str 'name#)))))))
+#
+# deft-call: deft-map
+# deft-call: deft-fn
+# deft-call: deft-list

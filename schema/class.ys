@@ -1,0 +1,13 @@
+!yamlscript/v0
+ns: schema::class
+use schemays: :all
+
+deft-list classes:
+  deft-map::
+    classId    : /[A-Z]{1,4}\d{3}/
+    className  : /[\w ]{8,23}/
+    teacher    : /((Mr|Mr?s|Dr)\.) [\w ]+/
+    department : /[\w ]{7,18}/
+    capacity   : 20..35
+    roomNumber : /(\d{3}[ABC]|GYM1)/
+    period     : 1.0..7.0

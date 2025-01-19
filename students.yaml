@@ -1,0 +1,91 @@
+students:
+- studentId: S001
+  firstName: John
+  lastName: Smith
+  grade: 9
+  enrolledClasses:
+  - MATH101
+  - ENG101
+  - SCI101
+  gpa: 3.8
+- studentId: S002
+  firstName: Emma
+  lastName: Johnson
+  grade: 10
+  enrolledClasses:
+  - HIST101
+  - MATH201
+  - PHY101
+  gpa: 3.9
+- studentId: S003
+  firstName: Michael
+  lastName: Brown
+  grade: 11
+  enrolledClasses:
+  - CHEM201
+  - BIO201
+  - ENG201
+  gpa: 3.5
+- studentId: S004
+  firstName: Sarah
+  lastName: Davis
+  grade: 12
+  enrolledClasses:
+  - PHYS301
+  - CALC301
+  - LIT301
+  gpa: 3.7
+- studentId: S005
+  firstName: David
+  lastName: Wilson
+  grade: 9
+  enrolledClasses:
+  - ART101
+  - MUS101
+  - PE101
+  gpa: 3.4
+- studentId: S006
+  firstName: Lisa
+  lastName: Anderson
+  grade: 10
+  enrolledClasses:
+  - SPAN101
+  - HIST201
+  - COMP101
+  gpa: 3.6
+- studentId: S007
+  firstName: James
+  lastName: Taylor
+  grade: 11
+  enrolledClasses:
+  - MATH301
+  - PHYS201
+  - CHEM201
+  gpa: 3.2
+- studentId: S008
+  firstName: Emily
+  lastName: Martin
+  grade: 12
+  enrolledClasses:
+  - ENG401
+  - HIST301
+  - ECON301
+  gpa: 3.9
+- studentId: S009
+  firstName: Robert
+  lastName: Thompson
+  grade: 9
+  enrolledClasses:
+  - BIO101
+  - MATH101
+  - ENG101
+  gpa: 3.3
+- studentId: S010
+  firstName: Jessica
+  lastName: White
+  grade: 10
+  enrolledClasses:
+  - CHEM101
+  - PHY101
+  - ART101
+  gpa: 3.8

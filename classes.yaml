@@ -1,0 +1,75 @@
+!yamlscript/v0/data
+
+:use schema::class: :all
+
+classes: !:classes
+- classId: MATH101
+  className: Algebra I
+  teacher: Dr. Roberts
+  department: Mathematics
+  capacity: 30
+  roomNumber: 201A
+  period: 1
+- classId: ENG101
+  className: Freshman English
+  teacher: Ms. Williams
+  department: English
+  capacity: 25
+  roomNumber: 103B
+  period: 2
+- classId: SCI101
+  className: Introduction to Science
+  teacher: Mr. Johnson
+  department: Science
+  capacity: 28
+  roomNumber: 301C
+  period: 3
+- classId: HIST101
+  className: World History
+  teacher: Mrs. Anderson
+  department: Social Studies
+  capacity: 32
+  roomNumber: 105A
+  period: 4
+- classId: PHY101
+  className: Physics Fundamentals
+  teacher: Dr. Thompson
+  department: Science
+  capacity: 24
+  roomNumber: 302A
+  period: 5
+- classId: ART101
+  className: Introduction to Art
+  teacher: Ms. Garcia
+  department: Fine Arts
+  capacity: 20
+  roomNumber: 401B
+  period: 6
+- classId: MATH201
+  className: Geometry
+  teacher: Mr. Phillips
+  department: Mathematics
+  capacity: 28
+  roomNumber: 202A
+  period: 2
+- classId: CHEM101
+  className: Chemistry Basics
+  teacher: Dr. Martinez
+  department: Science
+  capacity: 24
+  roomNumber: 303C
+  period: 3
+- classId: ENG201
+  className: American Literature
+  teacher: Mrs. Brown
+  department: English
+  capacity: 25
+  roomNumber: 104B
+  period: 4
+- classId: PE101
+  className: Physical Education
+  teacher: Mr. Davis
+  department: Physical Education
+  capacity: 35
+  roomNumber: GYM1
+  period: 7

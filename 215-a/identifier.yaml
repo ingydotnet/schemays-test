@@ -1,0 +1,18 @@
+!yamlscript/v0
+use:
+  schemays::def: :as dt
+  schemays::core: :all
+
+dt/map:
+  -desc: A unique set of characters used to identify the legal entity.
+
+  issuingAuthorityName:
+    type: +str 2-
+    desc:
+      The name of the public authority responsible for issuing the identifier.
+    demo: SEBOLREG
+
+  notation:
+    type: /[0-9][-0-9]{0,10}/
+    desc: A string of characters to uniquely identify a legal entity
+    demo: 552345-123

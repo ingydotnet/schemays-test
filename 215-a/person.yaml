@@ -1,0 +1,20 @@
+!yamlscript/v0
+ns: schema::person
+use:
+  schemays::def: :as dt
+  schemays::core: :all
+
+dt/map person::
+  -desc: A individual human being who may be dead or alive, but not imaginary.
+
+  fullName:
+    type: +str
+    name: Full name
+    desc: The complete name of the Person as one string.
+
+  dateOfBirth:
+    type: +date
+    name: Date of birth
+    desc: The point in time on which the Person was born.
+
+  identifier ?: load('./identifier.yaml')
